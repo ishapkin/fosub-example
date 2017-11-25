@@ -5,17 +5,27 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/")
      */
-    public function indexAction(Request $request)
+    public function homeAction(Request $request){
+        return $this->render('home/home.html.twig');
+    }
+    /**
+     * @Route("/user")
+     */
+    public function userAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', array(
-            'base_dir' => realpath($this->container->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ));
+        return new Response('Hello user!');
+    }
+    /**
+     * @Route("/admin")
+     */
+    public function adminAction(Request $request){
+        return new Response('Hello admin!');
     }
 }
